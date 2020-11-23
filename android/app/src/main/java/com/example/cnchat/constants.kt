@@ -5,7 +5,10 @@ import java.util.*
 
 object constants{
     val sharedPrefName = "mySharedPref"
+
     val baseURL = "http://192.168.0.18:3000/api/"
+//    val baseURL = "https://online-dtu-bookstore.herokuapp.com/api/"
+
     val bearer = "Bearer "
     var token = ""
     val token_name = "token"

@@ -66,8 +66,8 @@ class login : AppCompatActivity() {
         progressDialog.setMessage("Logging in..")
         progressDialog.show()
 
-        val email = editTextEmail.text.toString()
-        val pass = editTextPassword.text.toString()
+        val email = editTextEmail.text.toString().trim()
+        val pass = editTextPassword.text.toString().trim()
 
         retrofitClient.retrofitService.loginUser(email,pass).enqueue(
 

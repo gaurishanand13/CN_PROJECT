@@ -23,10 +23,17 @@ app.use(bodyParser.json());
 //connecting the database to this server then run the code of api too
 async function connectToDB() {
     try {
-        const { MONGODB_URL } = require('./config')
+        const { PRIMARY_CONNECTION_STRING, PRIMARY_PASSWORD, USERNAME } = require('./config')
         const mongoose = require('mongoose')
-        await mongoose.connect(MONGODB_URL, {
-            useNewUrlParser: true
+        await mongoose.connect(PRIMARY_CONNECTION_STRING, {
+            auth: {
+                user: USERNAME,
+                password: PRIMARY_PASSWORD
+            },
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false,
+            useCreateIndex: true
         })
 
         //Now after connecting the db, set up the api too

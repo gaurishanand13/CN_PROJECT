@@ -120,9 +120,9 @@ class MainActivity : AppCompatActivity() {
 
         //Setting up the send message button
         sendBtn.setOnClickListener {
-            if(!messageEditText.text.toString().isEmpty()){
+            if(!messageEditText.text.toString().trim().isEmpty()){
                 //Send the message to the user
-                sendMessage(receipentsEmail!!,messageEditText.text.toString(),receipentsFirstName,receipentsLastName)
+                sendMessage(receipentsEmail!!,messageEditText.text.toString().trim(),receipentsFirstName,receipentsLastName)
 
                 //Setting the text as empty - after the message is sent.
                 messageEditText.setText("",TextView.BufferType.EDITABLE)

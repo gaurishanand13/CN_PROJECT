@@ -40,10 +40,10 @@ class register : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.back)
 
         registerButton.setOnClickListener {
-            if(firstNameEditText.text.toString().isEmpty() ||
-                lastNameEditText.text.toString().isEmpty() ||
-                emailEditText.text.toString().isEmpty() ||
-                passwordEditText.text.toString().isEmpty() ){
+            if(firstNameEditText.text.toString().trim().isEmpty() ||
+                lastNameEditText.text.toString().trim().isEmpty() ||
+                emailEditText.text.toString().trim().isEmpty() ||
+                passwordEditText.text.toString().trim().isEmpty() ){
 
                 Toast.makeText(this,"Enter all fields",Toast.LENGTH_SHORT).show()
             }
@@ -65,7 +65,12 @@ class register : AppCompatActivity() {
         progressDialog.show()
 
 
-        retrofitClient.retrofitService.registerUser(firstNameEditText.text.toString(), lastNameEditText.text.toString(), emailEditText.text.toString(), passwordEditText.text.toString()).enqueue(object : Callback<loginRegisterResponse> {
+        retrofitClient.retrofitService.registerUser(
+            firstNameEditText.text.toString().trim(),
+            lastNameEditText.text.toString().trim(),
+            emailEditText.text.toString().trim(),
+            passwordEditText.text.toString().trim()
+        ).enqueue(object : Callback<loginRegisterResponse> {
 
             override fun onFailure(call: Call<loginRegisterResponse>, t: Throwable) {
                 progressDialog.dismiss()
